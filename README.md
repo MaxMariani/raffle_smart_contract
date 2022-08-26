@@ -14,7 +14,7 @@ Behaviors:
 - Only Partecipant can join the raffle, the manager earns 20% of the contract's total balance once a winner has been picked.
 - Managers cannot join the raffle as partecipants.
 - Only the manager can pick a winner.
-- Once a winner has been draw, the raffle will be marked as close, and addresses are no more allowed to join.
+- Once a winner has been draw, the partecipants list will be resetted in order to make the Smart Contract reusable.
 
 
 ## Installation
