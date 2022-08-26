@@ -52,4 +52,8 @@ contract Raffle {
         partecipants = new address payable[](0);
     }
 
+    function viewBalance() public view returns(uint){
+        return address(this).balance;
+    }
+
 }
