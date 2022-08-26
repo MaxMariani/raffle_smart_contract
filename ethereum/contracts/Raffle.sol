@@ -10,7 +10,7 @@ contract RaffleFactory {
         deployedRaffles.push(payable(newRaffle));
     }
 
-    function deployedRafflesList() public view returns (address payable[] memory){
+    function deployedCampaigns() public view returns (address payable[] memory){
         return deployedRaffles;
     }
 
@@ -19,14 +19,10 @@ contract RaffleFactory {
 contract Raffle {
 
     uint public contribution;
-
     address payable public manager;
     address payable[] partecipants;
-    address payable public raffleWinner;
 
-    bool public isRaffleOpen = true;
-
-    constructor(uint _contribution, address _manager) {
+    constructor(uint _contribution, address _manager ) {
         manager = payable(_manager);
         contribution = _contribution;
     }
@@ -41,7 +37,7 @@ contract Raffle {
     }
 
     function enterRaffle() public payable{
-        assert(contribution == msg.value && msg.sender != manager && isRaffleOpen);
+        assert(contribution == msg.value && msg.sender != manager);
         partecipants.push(payable(msg.sender));
     }
 
@@ -52,21 +48,8 @@ contract Raffle {
     function pickWinner() public payable restricted{
         assert(partecipants.length >= 1);
         manager.transfer(address(this).balance / 5);
-        raffleWinner = partecipants[randomNumber()];
-        raffleWinner.transfer(address(this).balance);
-        isRaffleOpen = false;
-    }
-
-    function getSummary() public view returns(uint, uint, address, uint, address, bool){
-        return(
-            contribution,
-            address(this).balance,
-            manager,
-            partecipants.length,
-            raffleWinner,
-            isRaffleOpen
-        );
+        partecipants[randomNumber()].transfer(address(this).balance);
+        partecipants = new address payable[](0);
     }
 
 }
-
