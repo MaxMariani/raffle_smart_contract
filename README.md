@@ -1,6 +1,6 @@
 ## Raffle Smart Contract
 
-A Soldity Smart Contract based on [Raffle](https://en.wikipedia.org/wiki/Raffle) Gambling competition.
+Soldity Smart Contract based on [Raffle](https://en.wikipedia.org/wiki/Raffle) Gambling competition.
 
 ## SC's Description
 
